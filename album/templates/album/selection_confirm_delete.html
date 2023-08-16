@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 
 {% block section %}
-<h1>Eliminar a la jugadora {{ object.first_name }} {{ object.last_name }}?</h1>
+<h1>Eliminar a la selección {{ object.name }}?</h1>
 <hr>
 {% endblock section %}
 
 {% block maincontent %}
 <form action="" method="post">{% csrf_token %}
     <button class="btn btn-danger" type="submit" >Eliminar</button>
-    <a class='btn btn-secondary' href="{% url 'player-list' %}">Cancelar</a>
+    <a class='btn btn-secondary' href="{% url 'selection-list' %}">Cancelar</a>
 </form>
 {% endblock maincontent %}

@@ -3,24 +3,24 @@
 {% load static %}
 
 {% block section %}
-   <h2>
-       {{ object.first_name }} {{ object.last_name }}
-       {% if object.selection_id %}
-         ( <a href="{% url "selection-detail" object.selection_id %}">
-             {{ object.selection }}
-           </a> )
-       {% endif %}
-    </h2>
-    <p><strong>comments: </strong>{{ object.comment|default:"no comments" }}</p>
-    <a href="{% url "player-update" object.id %}">edit</a>
-    <a href="{% url "player-delete" object.id %}">delete</a> 
-   <hr>
+<div class="row">
+    <div class="col d-flex align-items-center">
+        <h1 class="me-3">{{ object.first_name }} {{ object.last_name }}</h1>
+        <a class="badge rounded-pill text-bg-primary" href="{% url 'selection-detail' object.selection_id %}">{{ object.selection }}</a>
+    </div>
+</div>
+<div class="row">
+    <div class="col-auto"><a href="{% url 'player-update' object.id %}" class="btn btn-info">Editar</a></div>
+    <div class="col-auto"><a href="{% url 'player-delete' object.id %}" class="btn btn-danger">Eliminar</a></div>
+</div>
+<hr>
 {% endblock section %}
 
 {% block maincontent %}
-<div>
- <div>
-     <img src="{% static object.photo.url %}" style="width:250px;height:330px" />
+<div class="row">
+ <div class="col">
+    <p><strong>Comentarios:</strong> {{ object.comment | default:"Sin comentarios" }}</p>
+    <img src="{% static object.photo.url %}" class="img-fluid" style="max-width: 30%;" alt="Foto {{ object.first_name }} {{ object.last_name }}" />
  </div>
 </div>
 {% endblock maincontent %} 
