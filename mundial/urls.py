@@ -19,17 +19,20 @@ from django.urls import path
 from album import views
 
 urlpatterns = [
+    path('', views.SelectionListView.as_view()),
     path('admin/', admin.site.urls),
+    # Selection
     path('selection/', views.SelectionListView.as_view(), name='selection-list'),
+    path('selection/create/', views.SelectionCreate.as_view(), name='selection-create'),
+    path('selection/<int:pk>/update/',views.SelectionUpdate.as_view(),name='selection-update'), 
     path('selection/<int:pk>/detail/',
          views.SelectionDetailView.as_view(), name='selection-detail'),
+    path('selection/<int:pk>/delete/', views.SelectionDelete.as_view(), name='selection-delete'),
+    # Player
     path('player/', views.PlayerListView.as_view(), name='player-list'),
+    path('player/create/', views.PlayerCreate.as_view(), name='player-create'),
     path('player/<int:pk>/detail/',
          views.PlayerDetailView.as_view(), name='player-detail'),
-    # Update
     path('player/<int:pk>/update/',views.PlayerUpdate.as_view(),name='player-update'), 
-    #Create
-    path('player/create/', views.PlayerCreate.as_view(), name='player-create'),
-    #Delete
     path('player/<int:pk>/delete/', views.PlayerDelete.as_view(), name='player-delete'),
 ]
