@@ -1,0 +1,22 @@
+<div class="col col-sm-8 col-md-6">
+  <div class="input-group">
+    <input type="text" class="form-control" id="queryInput" value="{{ query }}"/>
+    <i
+      id="searchBtn"
+      class="input-group-text col-auto bi bi-search"
+      style="cursor: pointer"
+    ></i>
+  </div>
+</div>
+
+<script>
+  document.getElementById("searchBtn").addEventListener("click", () => {
+    const query = document.getElementById("queryInput").value;
+    const currentUrl = new URL(window.location);
+
+    if (query) currentUrl.searchParams.set("query", query);
+    else currentUrl.searchParams.delete("query");
+
+    window.location.href = currentUrl.toString();
+  });
+</script>

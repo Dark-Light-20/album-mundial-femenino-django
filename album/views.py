@@ -1,6 +1,8 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DeleteView, UpdateView, ListView, DetailView
 from album.models import Selection, Player
+from django.db.models import Value
+from django.db.models.functions import Concat
 
 # Create your views here.
 
@@ -9,6 +11,17 @@ from album.models import Selection, Player
 class SelectionListView(ListView):
     model = Selection
 
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Get the value of the 'query' query parameter
+        query = self.request.GET.get('query')
+
+        # Filter the queryset based on the 'query' parameter if provided
+        if query:
+            queryset = queryset.filter(name__icontains=query)
+
+        return queryset
 
 class SelectionDetailView(DetailView):
     model = Selection
@@ -55,6 +68,20 @@ class SelectionDelete(DeleteView):
 
 class PlayerListView(ListView):
     model = Player
+    
+    def get_queryset(self):
+        queryset = super().get_queryset()
+
+        # Get the value of the 'query' query parameter
+        query = self.request.GET.get('query')
+
+        # Filter the queryset based on the 'query' parameter if provided
+        if query:
+            queryset = queryset.annotate(
+                full_name=Concat('first_name', Value(' '), 'last_name')
+                ).filter(full_name__icontains=query)
+        
+        return queryset
 
 
 class PlayerDetailView(DetailView):

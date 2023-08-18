@@ -17,7 +17,7 @@
    <h2>Jugadoras <a  href="{% url 'player-create' %}" class="ms-2 btn btn-success">Crear</a></h2>
    <div class="row mt-4">
       {% for p in object.get_players.all %}
-      <div class="col-xs-12 col-sm-6 col-lg-3 mb-3">
+      <div class="col-12 col-sm-6 col-lg-3 mb-3">
          <div class="card w-auto h-100">
             <img
             src="{% static p.photo.url %}"
