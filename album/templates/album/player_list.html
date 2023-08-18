@@ -6,14 +6,16 @@
 <h1>Lista de jugadoras</h1>
 <div class="row">
   <div class="col-auto"><a href="{% url 'player-create' %}" class="btn btn-success">Crear</a></div>
+  {% include 'includes/search-bar.html' with query=request.GET.query %}
 </div>
 <hr>
 {% endblock section %}
 
 {% block maincontent %}
     <div class="row">
+      {% if object_list.all|length > 0 %}
         {% for p in object_list.all %}
-            <div class="col-xs-12 col-sm-6 col-md-3">
+            <div class="col-12 col-sm-6 col-md-3">
                 <div class="card w-auto h-100">
                     <img
                       src="{% static p.photo.url %}"
@@ -35,5 +37,8 @@
                  </div>
             </div>
         {% endfor %}
+      {% else %}
+        <h3>No hay resultados.</h3>
+      {% endif %}
     </div>
 {% endblock maincontent %}

@@ -17,7 +17,7 @@
 {% block maincontent %}
 <form enctype="multipart/form-data" method="post">  {% csrf_token %}
   <div class="row">
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.selection.id_for_label }}" class="form-label">Selección</label>
       <select type="email" class="form-select" id="{{ form.selection.id_for_label }}" name="{{ form.selection.name }}">
         {% for selection in form.selection.field.queryset %}
@@ -26,34 +26,34 @@
       </select>
     </div>
 
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.first_name.id_for_label }}" class="form-label">Nombre</label>
       <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" {% if form.first_name.value %} value="{{ form.first_name.value }}" {% endif %} name="{{ form.first_name.name }}">
     </div>
 
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.last_name.id_for_label }}" class="form-label">Apellido</label>
       <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" {% if form.last_name.value %} value="{{ form.last_name.value }}" {% endif %} name="{{ form.last_name.name }}">
     </div>
 
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.height.id_for_label }}" class="form-label">Altura</label>
       <input type="number" class="form-control" id="{{ form.height.id_for_label }}" value="{{ form.height.value|replace_comma }}" name="{{ form.height.name }}">
     </div>
 
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.weight.id_for_label }}" class="form-label">Peso</label>
       <input type="number" class="form-control" id="{{ form.weight.id_for_label }}" value="{{ form.weight.value }}" name="{{ form.weight.name }}">
     </div>
   </div>
 
   <div class="row mb-4">
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.comment.id_for_label }}" class="form-label">Comentarios</label>
       <textarea class="form-control" id="{{ form.comment.id_for_label }}" rows="3" name="{{ form.comment.name }}">{% if form.comment.value %}{{ form.comment.value }}{% endif %}</textarea>
     </div>
 
-    <div class="col-xs-12 col-sm-6 mb-3">
+    <div class="col-12 col-sm-6 mb-3">
       <label for="{{ form.photo.id_for_label }}" class="form-label">Foto</label>
       <input class="form-control" type="file" id="{{ form.photo.id_for_label }}" aria-describedby="currentPhoto" name="{{ form.photo.name }}">
       {% if form.photo.value %}
